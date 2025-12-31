@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Proposal</title>
+    <title>Special Question</title>
     <style>
         * {
             margin: 0;
@@ -12,410 +12,239 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Envelope Container */
-        .envelope-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: opacity 0.5s ease 3s;
-        }
-
-        .envelope-wrapper.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .envelope {
-            position: relative;
-            width: 400px;
-            height: 280px;
-            cursor: pointer;
-        }
-
-        /* Envelope Body */
-        .envelope-body {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #f4e9d8;
-            border: 2px solid #d4c4b0;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-        }
-
-        /* Envelope Flap */
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform-origin: top center;
-            transform-style: preserve-3d;
-            transition: transform 1.5s ease;
-            z-index: 4;
-        }
-
-        .envelope-flap-front {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #e8dcc8;
-            border: 2px solid #d4c4b0;
-            clip-path: polygon(0 0, 100% 0, 50% 50%);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .envelope-flap-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #d4c4b0;
-            clip-path: polygon(0 0, 100% 0, 50% 50%);
-            transform: rotateX(180deg);
-        }
-
-        /* Letter Inside */
-        .letter {
-            position: absolute;
-            width: 90%;
-            height: 85%;
-            left: 5%;
-            top: 100%;
-            background: white;
-            border: 1px solid #ddd;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 3;
-            transition: top 1.2s ease 0.3s;
-            padding: 20px;
             overflow: hidden;
         }
 
-        .letter-content {
+        .container {
             text-align: center;
-            color: #333;
-        }
-
-        .letter-content h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #764ba2;
-        }
-
-        .letter-content p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        /* Animation States */
-        .envelope-wrapper.opened .envelope-flap {
-            transform: rotateX(-180deg);
-        }
-
-        .envelope-wrapper.opened .letter {
-            top: -20%;
-        }
-
-        /* Click instruction */
-        .click-instruction {
-            position: absolute;
-            bottom: -50px;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 18px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.6;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        /* Main Content (Hidden Initially) */
-        .main-content {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.8s ease;
-            text-align: center;
-            padding: 40px;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
+            padding: 50px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            position: relative;
         }
 
-        .main-content.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .main-content h1 {
-            font-size: 48px;
-            color: #764ba2;
+        h1 {
+            color: #333;
             margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .main-content p {
-            font-size: 20px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .proposal-text {
-            font-size: 32px;
-            font-weight: bold;
-            color: #667eea;
-            margin: 40px 0;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            10%, 30% {
-                transform: scale(1.1);
-            }
-            20%, 40% {
-                transform: scale(1);
-            }
+            font-size: 2.5em;
         }
 
         .buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         button {
             padding: 15px 40px;
-            font-size: 20px;
+            font-size: 1.2em;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .yes-btn {
+        #yesBtn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
 
-        .yes-btn:hover {
+        #yesBtn:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(118, 75, 162, 0.4);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
         }
 
-        .no-btn {
-            background: #f0f0f0;
+        #noBtn {
+            background: #e0e0e0;
             color: #666;
-            position: relative;
         }
 
-        .no-btn:hover {
-            transform: scale(0.9);
+        #noBtn:hover {
+            background: #d0d0d0;
         }
 
         .hearts {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 9999;
-            display: none;
-        }
-
-        .hearts.show {
-            display: block;
+            z-index: 1000;
         }
 
         .heart {
             position: absolute;
-            font-size: 40px;
-            animation: float-up 3s ease-in forwards;
+            font-size: 30px;
+            animation: float 4s ease-in infinite;
             opacity: 0;
         }
 
-        @keyframes float-up {
+        @keyframes float {
             0% {
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 1;
-                transform: translateY(0) rotate(0deg);
             }
             100% {
+                transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
-                transform: translateY(-1000px) rotate(360deg);
             }
         }
 
-        @media (max-width: 768px) {
-            .envelope {
-                width: 320px;
-                height: 220px;
-            }
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+            text-align: center;
+        }
 
-            .main-content {
-                margin: 20px;
-                padding: 30px 20px;
-            }
+        .celebration h2 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
 
-            .main-content h1 {
-                font-size: 36px;
-            }
+        .celebration p {
+            color: #666;
+            font-size: 1.5em;
+        }
 
-            .main-content p {
-                font-size: 18px;
-            }
+        .rose-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-            .proposal-text {
-                font-size: 24px;
-            }
+        .rose {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            animation: bloom 2s ease-out forwards;
+            transform: scale(0);
+        }
 
-            button {
-                padding: 12px 30px;
-                font-size: 18px;
+        @keyframes bloom {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
             }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        .rose svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .petal {
+            fill: #dc143c;
+            animation: petalPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes petalPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .stem {
+            fill: #228b22;
+        }
+
+        .leaf {
+            fill: #2e8b57;
         }
     </style>
 </head>
 <body>
-    <!-- Envelope Animation -->
-    <div class="envelope-wrapper" id="envelopeWrapper">
-        <div class="envelope" id="envelope">
-            <div class="envelope-body"></div>
-            <div class="envelope-flap">
-                <div class="envelope-flap-front"></div>
-                <div class="envelope-flap-back"></div>
-            </div>
-            <div class="letter">
-                <div class="letter-content">
-                    <h2>💌 You've Got Mail 💌</h2>
-                    <p>Someone special has a question for you...</p>
-                    <p style="margin-top: 20px; font-style: italic; color: #764ba2;">Click to open!</p>
-                </div>
-            </div>
-            <div class="click-instruction">👆 Click the envelope to open 👆</div>
-        </div>
-    </div>
-
-    <!-- Main Proposal Content -->
-    <div class="main-content" id="mainContent">
-        <h1>💝 A Special Question 💝</h1>
-        <p>From the moment I met you, I knew you were special.</p>
-        <p>Every day with you is a gift, and every moment we share makes my heart skip a beat.</p>
-        <p>Life is more beautiful with you in it, and I want to make more memories together.</p>
-        
-        <div class="proposal-text">
-            Will you be mine? ❤️
-        </div>
-
+    <div class="container">
+        <h1>💕 Will you be my Valentine? 💕</h1>
         <div class="buttons">
-            <button class="yes-btn" onclick="sayYes()">Yes! 💕</button>
-            <button class="no-btn" onclick="sayNo(this)">No</button>
+            <button id="yesBtn" onclick="sayYes()">Yes! 💖</button>
+            <button id="noBtn" onclick="sayNo()">No</button>
         </div>
     </div>
 
-    <!-- Hearts Animation Container -->
     <div class="hearts" id="hearts"></div>
+    <div class="celebration" id="celebration">
+        <h2>Aapka Bahut Bahut Shukriya</h2>
+        <div class="rose-container">
+            <div class="rose">
+                <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Petals -->
+                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(-30 50 40)"/>
+                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(30 50 40)"/>
+                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(90 50 40)"/>
+                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(-90 50 40)"/>
+                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(150 50 40)"/>
+                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(-150 50 40)"/>
+                    <circle class="petal" cx="50" cy="40" r="12"/>
+                    
+                    <!-- Stem -->
+                    <rect class="stem" x="48" y="60" width="4" height="70" rx="2"/>
+                    
+                    <!-- Leaves -->
+                    <ellipse class="leaf" cx="40" cy="85" rx="12" ry="8" transform="rotate(-45 40 85)"/>
+                    <ellipse class="leaf" cx="60" cy="100" rx="12" ry="8" transform="rotate(45 60 100)"/>
+                </svg>
+            </div>
+        </div>
+        <p>You've made me so happy! 🌹💕</p>
+    </div>
 
     <script>
-        // Envelope opening animation
-        const envelopeWrapper = document.getElementById('envelopeWrapper');
-        const envelope = document.getElementById('envelope');
-        const mainContent = document.getElementById('mainContent');
-
-        envelope.addEventListener('click', () => {
-            envelopeWrapper.classList.add('opened');
-            
-            // After envelope opens, hide it and show main content
-            setTimeout(() => {
-                envelopeWrapper.classList.add('hide');
-                setTimeout(() => {
-                    mainContent.classList.add('show');
-                }, 500);
-            }, 2500);
-        });
-
-        // Auto-open after 2 seconds (optional - remove if you want click-only)
-        setTimeout(() => {
-            envelope.click();
-        }, 2000);
-
         function sayYes() {
-            const hearts = document.getElementById('hearts');
-            hearts.classList.add('show');
-            
-            // Create multiple hearts
+            document.getElementById('celebration').style.display = 'block';
+            createHearts();
+        }
+
+        function sayNo() {
+            alert('This option is unavailable');
+        }
+
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
-                    createHeart();
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    heartsContainer.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
                 }, i * 100);
             }
-
-            // Change content
-            mainContent.innerHTML = `
-                <h1 style="font-size: 60px;">🎉 YES! 🎉</h1>
-                <p style="font-size: 32px; margin-top: 30px;">You just made someone the happiest person alive! 💖</p>
-                <p style="font-size: 24px; margin-top: 20px;">This is the beginning of something beautiful! ✨</p>
-            `;
-        }
-
-        function sayNo(button) {
-            const randomX = Math.random() * (window.innerWidth - 200);
-            const randomY = Math.random() * (window.innerHeight - 100);
-            button.style.position = 'fixed';
-            button.style.left = randomX + 'px';
-            button.style.top = randomY + 'px';
-            
-            const messages = [
-                "Are you sure? 🥺",
-                "Think again! 💭",
-                "Really? 😢",
-                "Give it another thought! 💝",
-                "Please? 🙏"
-            ];
-            button.textContent = messages[Math.floor(Math.random() * messages.length)];
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.textContent = '❤️';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDelay = Math.random() * 0.5 + 's';
-            document.getElementById('hearts').appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 3000);
         }
     </script>
 </body>
