@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating hearts container -->
+    <div id="hearts-container"></div>
+    
+    <!-- Stars background -->
+    <div class="stars"></div>
+    
+    <!-- Main content -->
+    <div class="container">
+        <!-- Hero section -->
+        <section class="hero fade-in">
+            <h1 class="main-title">
+                <span class="sparkle">✨</span>
+                A Special Question For You
+                <span class="sparkle">✨</span>
+            </h1>
+        </section>
+
+        <!-- Message section -->
+        <section class="message-section fade-in-delay-1">
+            <div class="message-card">
+                <p class="message-text">
+                    From the moment I met you, my world became brighter. 
+                    Your smile lights up my darkest days, and your laughter 
+                    is the sweetest melody I've ever heard.
+                </p>
+                <p class="message-text">
+                    Every moment with you feels like a dream I never want to wake up from. 
+                    You make me believe in magic, in destiny, and in true love.
+                </p>
+                <p class="message-text">
+                    I can't imagine my life without you in it, and I don't want to.
+                </p>
+            </div>
+        </section>
+
+        <!-- Proposal section -->
+        <section class="proposal-section fade-in-delay-2">
+            <h2 class="proposal-question pulse">
+                💖 Will You Be Mine? 💖
+            </h2>
+            
+            <div class="buttons-container">
+                <button id="yes-btn" class="btn btn-yes">
+                    Yes! 💕
+                </button>
+                <button id="no-btn" class="btn btn-no">
+                    No
+                </button>
+            </div>
+        </section>
+
+        <!-- Celebration section (hidden by default) -->
+        <section id="celebration" class="celebration-section hidden">
+            <h2 class="celebration-text">
+                🎉 You've Made Me The Happiest! 🎉
+            </h2>
+            <p class="celebration-subtext">
+                I promise to cherish you forever and always! 💕✨
+            </p>
+        </section>
+    </div>
+
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
