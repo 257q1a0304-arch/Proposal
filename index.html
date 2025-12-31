@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>एक खास सवाल</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <title>Aapke Liye Kuch Khaas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,288 +16,602 @@
 
         body {
             font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            overflow: hidden;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 25%, #1f0f3d 50%, #0f0520 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-        }
-
-        .container {
-            position: relative;
-            width: 90%;
-            max-width: 600px;
-            perspective: 1000px;
-        }
-
-        .page {
-            position: absolute;
-            width: 100%;
-            background: white;
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            transform-style: preserve-3d;
-            transition: all 0.6s ease;
-        }
-
-        .page.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(-100%) rotateY(-90deg);
-        }
-
-        .page.visible {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateX(0) rotateY(0);
-        }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .message {
-            font-size: 1.3em;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .question {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8em;
-            color: #764ba2;
-            text-align: center;
-            margin: 40px 0;
-            font-weight: 600;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        button {
-            font-family: 'Cinzel', serif;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .yes-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .yes-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .no-btn {
-            background: #f0f0f0;
-            color: #666;
             position: relative;
         }
 
-        .no-btn:hover {
-            background: #e0e0e0;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .hearts {
+        /* Stars Background */
+        .stars {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 1;
         }
 
-        .heart {
+        .star {
             position: absolute;
-            font-size: 30px;
-            animation: float 3s ease-in-out infinite;
-            opacity: 0;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
         }
 
-        @keyframes float {
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Envelope Container */
+        .envelope-container {
+            position: absolute;
+            top: -300px;
+            z-index: 100;
+            animation: dropEnvelope 2s ease-out forwards;
+        }
+
+        @keyframes dropEnvelope {
+            to {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8b7355 0%, #a0826d 100%);
+            border: 2px solid #6d5d4b;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform-origin: top;
+            transition: transform 1.5s ease;
+            z-index: 3;
+        }
+
+        .envelope-flap-top {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid #a0826d;
+            border-bottom: 100px solid transparent;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        .envelope-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            color: #2d1b4e;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
+        .envelope-open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        /* Letter */
+        .letter {
+            position: absolute;
+            width: 280px;
+            height: 380px;
+            background: linear-gradient(to bottom, #fff9f0 0%, #fef5e7 100%);
+            top: 20px;
+            left: 10px;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(0);
+            border: 1px solid #e8d7c3;
+        }
+
+        /* Content Pages */
+        .content-container {
+            position: absolute;
+            width: 90%;
+            max-width: 600px;
+            opacity: 0;
+            z-index: 50;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .content-container.active {
+            opacity: 1;
+            pointer-events: all;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page {
+            display: none;
+            color: #fff;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .page.active {
+            display: block;
+            animation: slideIn 0.8s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .page-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #f0e6d2;
+            font-style: italic;
+        }
+
+        .button {
+            font-family: 'Cinzel', serif;
+            padding: 15px 40px;
+            margin: 10px;
+            font-size: 18px;
+            border: 2px solid #ffd700;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #2d1b4e;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+            font-weight: 600;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .button.no-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-color: #e74c3c;
+            color: white;
+        }
+
+        /* Rose Container */
+        .rose-container {
+            position: absolute;
+            opacity: 0;
+            z-index: 200;
+            pointer-events: none;
+        }
+
+        .rose {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: radial-gradient(ellipse at center, #ff1744 0%, #c2185b 70%, #880e4f 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform-origin: bottom center;
+            opacity: 0;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stem {
+            position: absolute;
+            width: 8px;
+            height: 0;
+            background: linear-gradient(to bottom, #2d5016 0%, #1a3009 100%);
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 25px;
+            background: radial-gradient(ellipse at center, #4caf50 0%, #2d5016 100%);
+            border-radius: 0 50% 50% 50%;
+            opacity: 0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaf-left {
+            bottom: 80px;
+            left: -30px;
+            transform: rotate(-45deg);
+        }
+
+        .leaf-right {
+            bottom: 60px;
+            right: -30px;
+            transform: rotate(45deg);
+        }
+
+        .final-message {
+            position: absolute;
+            top: -100px;
+            width: 400px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 32px;
+            color: #ffd700;
+            text-align: center;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 150;
+        }
+
+        @keyframes floatHeart {
             0% {
                 transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            50% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateY(-1000px) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        .next-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            display: block;
-            margin: 30px auto 0;
+        /* Fly Away Animation */
+        @keyframes flyAway {
+            to {
+                transform: translateY(-1500px) translateX(500px) rotate(45deg);
+                opacity: 0;
+            }
         }
 
-        .next-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        @keyframes slideLetterOut {
+            to {
+                transform: translateY(-150px);
+                opacity: 1;
+            }
         }
 
-        @media (max-width: 600px) {
-            .container {
-                width: 95%;
-            }
-            
-            .page {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .message {
-                font-size: 1.1em;
-            }
-            
-            .question {
-                font-size: 1.4em;
-            }
-            
-            button {
-                padding: 12px 30px;
-                font-size: 1em;
-            }
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <div class="hearts" id="hearts"></div>
-    
-    <div class="container">
-        <!-- Page 1: Introduction -->
-        <div class="page visible" id="page1">
-            <h1>💝 एक खास सवाल 💝</h1>
-            <div class="message">
-                <p>नमस्ते! 🌟</p>
-                <p>मैं आपसे कुछ बहुत खास पूछना चाहता हूं...</p>
-                <p>कृपया अगले पेज पर जाएं 💕</p>
-            </div>
-            <button class="next-btn" onclick="goToPage2()">आगे बढ़ें →</button>
-        </div>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
 
-        <!-- Page 2: The Question -->
-        <div class="page hidden" id="page2">
-            <h1>💖 मेरा सवाल 💖</h1>
-            <div class="question">
-                क्या आप मुझसे शादी करेंगी? 💍
-            </div>
-            <div class="button-container">
-                <button class="yes-btn" onclick="handleYes()">हां! 💕</button>
-                <button class="no-btn" id="noBtn" onclick="handleNo()">नहीं 😢</button>
-            </div>
-        </div>
-
-        <!-- Page 3: Success -->
-        <div class="page hidden" id="page3">
-            <h1>🎉 यहूउउउ! 🎉</h1>
-            <div class="message">
-                <p style="font-size: 2em;">💖💖💖</p>
-                <p>आपने मुझे दुनिया का सबसे खुश इंसान बना दिया!</p>
-                <p>मैं वादा करता हूं कि मैं हमेशा आपको खुश रखूंगा!</p>
-                <p style="font-size: 2em; margin-top: 20px;">🥰💍👰‍♀️🤵</p>
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope" id="envelope">
+                <div class="envelope-back"></div>
+                <div class="envelope-text">Aapke Liye Kuch Khaas</div>
+                <div class="letter" id="letter"></div>
+                <div class="envelope-flap">
+                    <div class="envelope-flap-top"></div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Content Container -->
+    <div class="content-container" id="contentContainer">
+        <!-- Page 1 -->
+        <div class="page active" id="page1">
+            <h1 class="page-title">Bataiye Aapke Dil Ka Haal</h1>
+            <p class="page-text">
+                Aapko Jabse Dekha Aapse Dil Lag Gaya,<br>
+                Aapki Hasi Ke Liye Mai Mar Mit Gaya,<br>
+                Chahe Kitni Bhi Khamiya Ho Mujhme,<br>
+                Phir Bhi Ye Dil Aapse Jud Chuka
+            </p>
+            <button class="button" onclick="nextPage()">Aage Badhe →</button>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page" id="page2">
+            <h1 class="page-title">I Love You So Much Baby<br>Kya Aap Meri Jaan Banogi</h1>
+            <button class="button" onclick="acceptProposal()">Haa 💖</button>
+            <button class="button no-btn" onclick="rejectProposal()">Nahi</button>
+        </div>
+    </div>
+
+    <!-- Rose Container -->
+    <div class="rose-container" id="roseContainer">
+        <div class="final-message" id="finalMessage">
+            Ab Shuru Hota Hai Humara Naya Atoot Rishta
+        </div>
+        <div class="rose" id="rose">
+            <div class="stem" id="stem"></div>
+            <div class="leaf leaf-left" id="leafLeft"></div>
+            <div class="leaf leaf-right" id="leafRight"></div>
+        </div>
+    </div>
+
     <script>
-        let noBtnClickCount = 0;
-
-        function goToPage2() {
-            document.getElementById('page1').classList.remove('visible');
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.remove('hidden');
-            document.getElementById('page2').classList.add('visible');
-        }
-
-        function handleYes() {
-            document.getElementById('page2').classList.remove('visible');
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page3').classList.remove('hidden');
-            document.getElementById('page3').classList.add('visible');
-            createHearts();
-        }
-
-        function handleNo() {
-            noBtnClickCount++;
-            const noBtn = document.getElementById('noBtn');
-            const containerRect = document.querySelector('.container').getBoundingClientRect();
-            
-            // Move the button to a random position
-            const maxX = window.innerWidth - containerRect.width - 100;
-            const maxY = window.innerHeight - 100;
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-            
-            // Change button text after multiple clicks
-            if (noBtnClickCount > 3) {
-                noBtn.textContent = 'प्लीज हां कहें 🥺';
-            }
-            if (noBtnClickCount > 6) {
-                noBtn.textContent = 'आखिरी मौका 💔';
+        // Create twinkling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
             }
         }
 
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts');
-            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝', '💘'];
+        createStars();
+
+        // Envelope click handler
+        let envelopeOpened = false;
+        document.getElementById('envelopeWrapper').addEventListener('click', function() {
+            if (!envelopeOpened) {
+                envelopeOpened = true;
+                openEnvelope();
+            }
+        });
+
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const letter = document.getElementById('letter');
+            const envelopeContainer = document.getElementById('envelopeContainer');
+            const contentContainer = document.getElementById('contentContainer');
+
+            // Open envelope
+            envelope.classList.add('envelope-open');
+
+            // Slide letter out
+            setTimeout(() => {
+                letter.style.animation = 'slideLetterOut 1.5s ease forwards';
+            }, 500);
+
+            // Fly envelope away
+            setTimeout(() => {
+                envelopeContainer.style.animation = 'flyAway 2s ease forwards';
+            }, 2500);
+
+            // Show content
+            setTimeout(() => {
+                contentContainer.classList.add('active');
+            }, 3500);
+        }
+
+        function nextPage() {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        }
+
+        function rejectProposal() {
+            alert('This option is unavailable');
+        }
+
+        function acceptProposal() {
+            const contentContainer = document.getElementById('contentContainer');
+            const envelopeContainer = document.getElementById('envelopeContainer');
             
-            for (let i = 0; i < 30; i++) {
+            // Hide content
+            contentContainer.style.animation = 'fadeIn 0.5s ease reverse';
+            setTimeout(() => {
+                contentContainer.classList.remove('active');
+            }, 500);
+
+            // Bring envelope back and fly away with everything
+            setTimeout(() => {
+                envelopeContainer.style.animation = 'none';
+                envelopeContainer.style.top = '-300px';
+                envelopeContainer.style.transform = 'none';
+                envelopeContainer.style.opacity = '1';
+                
+                setTimeout(() => {
+                    envelopeContainer.style.animation = 'flyAway 2s ease forwards';
+                }, 100);
+            }, 1000);
+
+            // Start rose animation
+            setTimeout(() => {
+                showRose();
+            }, 3000);
+        }
+
+        function showRose() {
+            const roseContainer = document.getElementById('roseContainer');
+            const rose = document.getElementById('rose');
+            const stem = document.getElementById('stem');
+            const leafLeft = document.getElementById('leafLeft');
+            const leafRight = document.getElementById('leafRight');
+            const finalMessage = document.getElementById('finalMessage');
+
+            roseContainer.style.opacity = '1';
+            roseContainer.style.top = '50%';
+            roseContainer.style.left = '50%';
+            roseContainer.style.transform = 'translate(-50%, -50%)';
+
+            // Grow stem
+            stem.style.transition = 'height 2s ease';
+            stem.style.height = '200px';
+
+            // Create petals (15 petals: 6 outer + 6 middle + 3 inner)
+            setTimeout(() => {
+                createPetals();
+            }, 1000);
+
+            // Show leaves
+            setTimeout(() => {
+                leafLeft.style.transition = 'opacity 1s ease';
+                leafLeft.style.opacity = '1';
+                leafRight.style.transition = 'opacity 1s ease';
+                leafRight.style.opacity = '1';
+            }, 2000);
+
+            // Show final message
+            setTimeout(() => {
+                finalMessage.style.transition = 'opacity 2s ease';
+                finalMessage.style.opacity = '1';
+            }, 3000);
+
+            // Create floating hearts
+            setTimeout(() => {
+                createFloatingHearts();
+            }, 3500);
+        }
+
+        function createPetals() {
+            const rose = document.getElementById('rose');
+            const petalConfigs = [
+                // Outer layer - 6 petals
+                { angle: 0, distance: 40, layer: 1 },
+                { angle: 60, distance: 40, layer: 1 },
+                { angle: 120, distance: 40, layer: 1 },
+                { angle: 180, distance: 40, layer: 1 },
+                { angle: 240, distance: 40, layer: 1 },
+                { angle: 300, distance: 40, layer: 1 },
+                // Middle layer - 6 petals
+                { angle: 30, distance: 25, layer: 2 },
+                { angle: 90, distance: 25, layer: 2 },
+                { angle: 150, distance: 25, layer: 2 },
+                { angle: 210, distance: 25, layer: 2 },
+                { angle: 270, distance: 25, layer: 2 },
+                { angle: 330, distance: 25, layer: 2 },
+                // Inner layer - 3 petals
+                { angle: 0, distance: 10, layer: 3 },
+                { angle: 120, distance: 10, layer: 3 },
+                { angle: 240, distance: 10, layer: 3 }
+            ];
+
+            petalConfigs.forEach((config, index) => {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    
+                    const radian = (config.angle * Math.PI) / 180;
+                    const x = Math.cos(radian) * config.distance;
+                    const y = Math.sin(radian) * config.distance;
+                    
+                    petal.style.left = `calc(50% + ${x}px)`;
+                    petal.style.top = `calc(50% + ${y}px)`;
+                    petal.style.transform = `translate(-50%, -50%) rotate(${config.angle}deg)`;
+                    
+                    if (config.layer === 2) {
+                        petal.style.width = '50px';
+                        petal.style.height = '65px';
+                    } else if (config.layer === 3) {
+                        petal.style.width = '35px';
+                        petal.style.height = '45px';
+                        petal.style.background = 'radial-gradient(ellipse at center, #ff5252 0%, #ff1744 70%, #c2185b 100%)';
+                    }
+                    
+                    rose.appendChild(petal);
+                    
+                    setTimeout(() => {
+                        petal.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        petal.style.opacity = '1';
+                    }, 50);
+                }, index * 100);
+            });
+        }
+
+        function createFloatingHearts() {
+            for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.className = 'heart';
-                    heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                    heart.innerHTML = '❤️';
                     heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = Math.random() * 2 + 's';
-                    heartsContainer.appendChild(heart);
-                    
+                    heart.style.bottom = '-50px';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.style.animation = `floatHeart ${Math.random() * 3 + 4}s ease-out forwards`;
+                    }, 50);
+
                     setTimeout(() => {
                         heart.remove();
-                    }, 3000);
+                    }, 7000);
                 }, i * 100);
             }
         }
-
-        // Add hover effect for no button to make it move away
-        document.addEventListener('DOMContentLoaded', function() {
-            const noBtn = document.getElementById('noBtn');
-            
-            noBtn.addEventListener('mouseenter', function() {
-                if (noBtnClickCount > 1) {
-                    handleNo();
-                }
-            });
-        });
     </script>
 </body>
 </html>
