@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Question</title>
+    <title>एक खास संदेश 💕</title>
     <style>
         * {
             margin: 0;
@@ -12,85 +12,287 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            min-height: 100vh;
             position: relative;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        button {
-            padding: 15px 40px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        #yesBtn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        #yesBtn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
-        }
-
-        #noBtn {
-            background: #e0e0e0;
-            color: #666;
-        }
-
-        #noBtn:hover {
-            background: #d0d0d0;
-        }
-
-        .hearts {
+        /* Stars Background */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 1;
         }
 
-        .heart {
+        .star {
             position: absolute;
-            font-size: 30px;
-            animation: float 4s ease-in infinite;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Envelope Container */
+        .envelope-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            position: relative;
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f4e4c1;
+            border: 3px solid #d4b896;
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 130px solid #e8d4a8;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            transform-origin: top center;
+            transition: transform 0.8s ease;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid #d4b896;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            transform-origin: top center;
+            transition: transform 0.8s ease;
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .letter {
+            position: absolute;
+            width: 260px;
+            height: 180px;
+            background: white;
+            top: 10px;
+            left: 20px;
+            z-index: 2;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #764ba2;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-150px);
+        }
+
+        .envelope-instruction {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            display: none;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .main-content.show {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Rose Container */
+        .rose-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .rose {
+            display: inline-block;
+            position: relative;
+            width: 200px;
+            height: 250px;
+            animation: roseGrow 2s ease forwards;
+            transform-origin: bottom center;
+        }
+
+        @keyframes roseGrow {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .petal {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: radial-gradient(ellipse at center, #ff6b9d 0%, #c9184a 100%);
+            border-radius: 50% 50% 50% 0;
+            transform-origin: bottom left;
+            animation: petalBloom 1s ease forwards;
             opacity: 0;
         }
 
-        @keyframes float {
+        @keyframes petalBloom {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            100% { transform: scale(1) rotate(var(--rotate)); opacity: 1; }
+        }
+
+        .petal:nth-child(1) { --rotate: 0deg; left: 70px; top: 40px; animation-delay: 0.2s; }
+        .petal:nth-child(2) { --rotate: 60deg; left: 85px; top: 35px; animation-delay: 0.3s; }
+        .petal:nth-child(3) { --rotate: 120deg; left: 90px; top: 50px; animation-delay: 0.4s; }
+        .petal:nth-child(4) { --rotate: 180deg; left: 80px; top: 65px; animation-delay: 0.5s; }
+        .petal:nth-child(5) { --rotate: 240deg; left: 65px; top: 60px; animation-delay: 0.6s; }
+        .petal:nth-child(6) { --rotate: 300deg; left: 60px; top: 50px; animation-delay: 0.7s; }
+
+        .stem {
+            position: absolute;
+            width: 8px;
+            height: 120px;
+            background: linear-gradient(to bottom, #2d5016, #4a7c2c);
+            bottom: 0;
+            left: 96px;
+            border-radius: 4px;
+            animation: stemGrow 1.5s ease forwards;
+            transform-origin: bottom center;
+        }
+
+        @keyframes stemGrow {
+            0% { height: 0; }
+            100% { height: 120px; }
+        }
+
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: #4a7c2c;
+            border-radius: 0 50% 50% 0;
+            animation: leafGrow 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes leafGrow {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .leaf:nth-child(1) { left: 85px; top: 140px; transform-origin: right center; animation-delay: 1s; }
+        .leaf:nth-child(2) { left: 100px; top: 170px; transform: scaleX(-1); animation-delay: 1.2s; }
+
+        /* Message Box */
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .message-box h1 {
+            color: #c9184a;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .message-box p {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hindi-text {
+            font-size: 1.3em;
+            color: #764ba2;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            color: #ff6b9d;
+            animation: floatHeart 4s infinite;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        @keyframes floatHeart {
             0% {
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 1;
@@ -101,151 +303,194 @@
             }
         }
 
-        .celebration {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 60px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            z-index: 2000;
-            text-align: center;
+        /* Button */
+        .response-button {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #ff6b9d, #c9184a);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(201, 24, 74, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .celebration h2 {
-            color: #667eea;
-            font-size: 3em;
-            margin-bottom: 20px;
+        .response-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(201, 24, 74, 0.6);
         }
 
-        .celebration p {
-            color: #666;
-            font-size: 1.5em;
+        .response-button:active {
+            transform: translateY(-1px);
         }
 
-        .rose-container {
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .rose {
-            width: 150px;
-            height: 150px;
-            position: relative;
-            animation: bloom 2s ease-out forwards;
-            transform: scale(0);
-        }
-
-        @keyframes bloom {
-            0% {
-                transform: scale(0) rotate(0deg);
-                opacity: 0;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .envelope {
+                width: 250px;
+                height: 166px;
             }
-            50% {
-                transform: scale(1.2) rotate(180deg);
+
+            .envelope-front,
+            .envelope-flap {
+                border-left-width: 125px;
+                border-right-width: 125px;
             }
-            100% {
-                transform: scale(1) rotate(360deg);
-                opacity: 1;
+
+            .envelope-front {
+                border-bottom-width: 108px;
             }
-        }
 
-        .rose svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .petal {
-            fill: #dc143c;
-            animation: petalPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes petalPulse {
-            0%, 100% {
-                opacity: 1;
+            .envelope-flap {
+                border-top-width: 83px;
             }
-            50% {
-                opacity: 0.8;
+
+            .letter {
+                width: 216px;
+                height: 150px;
+                font-size: 16px;
             }
-        }
 
-        .stem {
-            fill: #228b22;
-        }
+            .message-box {
+                padding: 25px;
+            }
 
-        .leaf {
-            fill: #2e8b57;
+            .message-box h1 {
+                font-size: 2em;
+            }
+
+            .message-box p {
+                font-size: 1em;
+            }
+
+            .rose {
+                width: 150px;
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>💕 Will you be my Valentine? 💕</h1>
-        <div class="buttons">
-            <button id="yesBtn" onclick="sayYes()">Yes! 💖</button>
-            <button id="noBtn" onclick="sayNo()">No</button>
+    <!-- Stars Background -->
+    <div class="stars" id="starsContainer"></div>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope" id="envelope">
+            <div class="envelope-back"></div>
+            <div class="letter">
+                <span>खोलने के लिए<br>क्लिक करें 💌</span>
+            </div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
         </div>
+        <div class="envelope-instruction">लिफाफे पर क्लिक करें ✨</div>
     </div>
 
-    <div class="hearts" id="hearts"></div>
-    <div class="celebration" id="celebration">
-        <h2>Aapka Bahut Bahut Shukriya</h2>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Rose -->
         <div class="rose-container">
             <div class="rose">
-                <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Petals -->
-                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(-30 50 40)"/>
-                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(30 50 40)"/>
-                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(90 50 40)"/>
-                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(-90 50 40)"/>
-                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(150 50 40)"/>
-                    <ellipse class="petal" cx="50" cy="40" rx="15" ry="20" transform="rotate(-150 50 40)"/>
-                    <circle class="petal" cx="50" cy="40" r="12"/>
-                    
-                    <!-- Stem -->
-                    <rect class="stem" x="48" y="60" width="4" height="70" rx="2"/>
-                    
-                    <!-- Leaves -->
-                    <ellipse class="leaf" cx="40" cy="85" rx="12" ry="8" transform="rotate(-45 40 85)"/>
-                    <ellipse class="leaf" cx="60" cy="100" rx="12" ry="8" transform="rotate(45 60 100)"/>
-                </svg>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="stem">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                </div>
             </div>
         </div>
-        <p>You've made me so happy! 🌹💕</p>
+
+        <!-- Message -->
+        <div class="message-box">
+            <h1>💕 एक खास संदेश 💕</h1>
+            <p class="hindi-text">🌹 तुम्हारे लिए ये गुलाब 🌹</p>
+            <p>
+                जब से तुम मिली हो, जिंदगी में रंग भर गए हैं।<br>
+                तुम्हारी मुस्कान मेरे दिन को रोशन कर देती है।
+            </p>
+            <p class="hindi-text">✨ तुम खास हो ✨</p>
+            <p>
+                तुम्हारी हर अदा, हर बात, सब कुछ मुझे पसंद है।<br>
+                तुम्हारे साथ बिताया हर पल अनमोल है।
+            </p>
+            <p class="hindi-text">💖 दिल की बात 💖</p>
+            <p>
+                मैं चाहता हूँ कि तुम हमेशा मुस्कुराती रहो।<br>
+                तुम्हारी खुशी में ही मेरी खुशी है।
+            </p>
+            <p class="hindi-text">🌟 तुम मेरे लिए सबसे खास हो 🌟</p>
+            <button class="response-button" onclick="showResponse()">💝 धन्यवाद 💝</button>
+        </div>
     </div>
 
     <script>
-        function sayYes() {
-            document.getElementById('celebration').style.display = 'block';
-            createHearts();
-        }
+        // Create Stars
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            const numberOfStars = 100;
 
-        function sayNo() {
-            alert('This option is unavailable');
-        }
-
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts');
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'heart';
-                    heart.innerHTML = '❤️';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = Math.random() * 2 + 's';
-                    heartsContainer.appendChild(heart);
-
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 4000);
-                }, i * 100);
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starsContainer.appendChild(star);
             }
         }
+
+        // Create Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Envelope Opening
+        const envelopeContainer = document.getElementById('envelopeContainer');
+        const envelope = document.getElementById('envelope');
+        const mainContent = document.getElementById('mainContent');
+
+        envelopeContainer.addEventListener('click', function() {
+            envelope.classList.add('open');
+            
+            setTimeout(() => {
+                envelopeContainer.style.display = 'none';
+                mainContent.classList.add('show');
+                
+                // Start creating floating hearts
+                setInterval(createHeart, 500);
+            }, 1000);
+        });
+
+        // Response Button
+        function showResponse() {
+            alert('आपकी मुस्कान सबसे कीमती है! 😊💕\n\nहमेशा खुश रहो! ✨');
+        }
+
+        // Initialize
+        window.addEventListener('load', function() {
+            createStars();
+        });
     </script>
 </body>
 </html>
