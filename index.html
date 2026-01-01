@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Proposal 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+    <title>A Special Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,17 +13,25 @@
         }
 
         body {
-            font-family: 'Pacifico', cursive;
-            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
             min-height: 100vh;
-            background: linear-gradient(135deg, #ff6ec4 0%, #ff1493 25%, #ff69b4 50%, #da70d6 75%, #ee82ee 100%);
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Twinkling Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
         .star {
             position: absolute;
             width: 2px;
@@ -38,402 +46,346 @@
             50% { opacity: 1; }
         }
 
-        /* Pink Stripes */
-        .stripe {
-            position: absolute;
-            width: 100%;
-            height: 3px;
-            background: rgba(255, 182, 193, 0.3);
-            animation: moveStripe 15s linear infinite;
-        }
-
-        @keyframes moveStripe {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Floating Ribbons */
-        .ribbon {
-            position: absolute;
-            width: 40px;
-            height: 150px;
-            background: linear-gradient(to bottom, #ff69b4, #ff1493);
-            border-radius: 20px;
-            animation: floatRibbon 8s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes floatRibbon {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
-        }
-
-        /* Container */
-        .container {
-            text-align: center;
-            z-index: 10;
-            padding: 20px;
-            max-width: 90%;
-        }
-
-        /* Envelope */
-        .envelope-wrapper {
-            cursor: pointer;
-            display: inline-block;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .envelope-wrapper:hover {
-            transform: scale(1.05);
-        }
-
-        .envelope {
-            width: 200px;
-            height: 130px;
-            position: relative;
-            background: linear-gradient(135deg, #d4af76 0%, #c5a572 33%, #b89968 66%, #e6c589 100%);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-top: 65px solid #d4af76;
-            transform-origin: top;
-            transition: transform 0.6s ease;
-        }
-
-        .envelope.open::before {
-            transform: rotateX(180deg);
-        }
-
-        .letter {
-            position: absolute;
-            width: 180px;
-            height: 200px;
-            background: white;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 5px;
-            padding: 20px;
-            font-size: 12px;
-            color: #333;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: all 0.8s ease;
-            line-height: 1.6;
-        }
-
-        .envelope.open .letter {
-            opacity: 1;
-            top: -50px;
-        }
-
-        /* Question Section */
-        .question-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
-            margin-top: 20px;
-        }
-
-        .question-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .question {
-            font-size: 28px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-            line-height: 1.4;
-        }
-
-        /* Buttons */
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            font-size: 24px;
-            font-family: 'Pacifico', cursive;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            color: white;
-        }
-
-        .btn-yes:hover {
-            transform: scale(1.1);
-        }
-
-        .btn-no {
-            background: linear-gradient(135deg, #ddd, #bbb);
-            color: #333;
-            position: relative;
-            transition: all 0.2s ease;
-        }
-
-        .btn-no.hide {
-            display: none;
-        }
-
-        /* Messages */
-        .message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-size: 16px;
-            color: #ff1493;
-            animation: slideIn 0.5s ease;
-            z-index: 1000;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Final Message */
-        .final-message {
+        .stripes {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 20, 147, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            animation: fadeIn 1s ease;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        .final-message.show {
-            display: flex;
+        .stripe {
+            position: absolute;
+            width: 200%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(-45deg);
+            animation: moveStripe 20s linear infinite;
         }
 
-        .final-content {
+        @keyframes moveStripe {
+            0% { transform: translateX(-100%) rotate(-45deg); }
+            100% { transform: translateX(100%) rotate(-45deg); }
+        }
+
+        .container {
             text-align: center;
-            color: white;
+            z-index: 10;
+            position: relative;
         }
 
-        .final-content h1 {
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            animation: dropDown 1.5s ease-out;
+        }
+
+        @keyframes dropDown {
+            0% {
+                transform: translateY(-1000px) rotate(0deg);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(30px) rotate(5deg);
+            }
+            80% {
+                transform: translateY(-10px) rotate(-3deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+        }
+
+        .envelope-wrapper:hover .envelope {
+            transform: scale(1.05);
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e5d3 50%, #d4af37 100%);
+            clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(135deg, #c9a961 0%, #f4e5d3 50%, #c9a961 100%);
+            bottom: 0;
+            clip-path: polygon(0 100%, 0 0, 50% 80%, 100% 0, 100% 100%);
+            border-radius: 0 0 5px 5px;
+        }
+
+        .envelope-top {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(135deg, #b8860b 0%, #f4e5d3 50%, #b8860b 100%);
+            top: 0;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            transition: transform 0.6s ease;
+            border-radius: 5px 5px 0 0;
+            z-index: 5;
+        }
+
+        .envelope-wrapper.open .envelope-top {
+            transform: rotateX(180deg);
+        }
+
+        .letter {
+            position: absolute;
+            width: 80%;
+            height: 140%;
+            background: white;
+            top: 20%;
+            left: 10%;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.6s ease;
+            z-index: 3;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(-150%);
+        }
+
+        .card {
+            position: absolute;
+            width: 250px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 48px;
-            margin-bottom: 30px;
-            animation: heartBeat 1.5s infinite;
+            font-size: 2.5em;
+            color: #e91e63;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Rose Design */
-        .rose-container {
-            margin: 20px 0;
-            display: inline-block;
+        .card p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .button {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+            font-weight: 600;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(-1px);
+        }
+
+        .response-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .response-buttons .button {
+            padding: 12px 30px;
+            font-size: 1em;
+        }
+
+        .button.yes {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+
+        .button.no {
+            background: linear-gradient(135deg, #f44336, #e57373);
         }
 
         .rose {
-            width: 100px;
-            height: 100px;
+            margin: 30px auto;
+            width: 150px;
+            height: 150px;
             position: relative;
-            animation: roseGlow 2s infinite alternate;
+            display: none;
         }
 
-        @keyframes roseGlow {
-            from { filter: drop-shadow(0 0 5px #ff69b4); }
-            to { filter: drop-shadow(0 0 20px #ff1493); }
+        .rose.show {
+            display: block;
+            animation: bloom 1s ease-out;
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
         }
 
         .petal {
             position: absolute;
-            width: 30px;
-            height: 40px;
-            background: radial-gradient(ellipse at center, #ff69b4 0%, #ff1493 70%, #c71585 100%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(ellipse at center, #ff4d8f 0%, #c2185b 100%);
             border-radius: 50% 50% 50% 0;
-            transform-origin: 0 100%;
+            transform-origin: bottom right;
         }
 
-        .petal:nth-child(1) { transform: translate(35px, 10px) rotate(0deg); }
-        .petal:nth-child(2) { transform: translate(35px, 10px) rotate(24deg); }
-        .petal:nth-child(3) { transform: translate(35px, 10px) rotate(48deg); }
-        .petal:nth-child(4) { transform: translate(35px, 10px) rotate(72deg); }
-        .petal:nth-child(5) { transform: translate(35px, 10px) rotate(96deg); }
-        .petal:nth-child(6) { transform: translate(35px, 10px) rotate(120deg); }
-        .petal:nth-child(7) { transform: translate(35px, 10px) rotate(144deg); }
-        .petal:nth-child(8) { transform: translate(35px, 10px) rotate(168deg); }
-        .petal:nth-child(9) { transform: translate(35px, 10px) rotate(192deg); }
-        .petal:nth-child(10) { transform: translate(35px, 10px) rotate(216deg); }
-        .petal:nth-child(11) { transform: translate(35px, 10px) rotate(240deg); }
-        .petal:nth-child(12) { transform: translate(35px, 10px) rotate(264deg); }
-        .petal:nth-child(13) { transform: translate(35px, 10px) rotate(288deg); }
-        .petal:nth-child(14) { transform: translate(35px, 10px) rotate(312deg); }
-        .petal:nth-child(15) { transform: translate(35px, 10px) rotate(336deg); }
+        .petal:nth-child(1) { transform: rotate(0deg) translateX(30px); }
+        .petal:nth-child(2) { transform: rotate(24deg) translateX(30px); }
+        .petal:nth-child(3) { transform: rotate(48deg) translateX(30px); }
+        .petal:nth-child(4) { transform: rotate(72deg) translateX(30px); }
+        .petal:nth-child(5) { transform: rotate(96deg) translateX(30px); }
+        .petal:nth-child(6) { transform: rotate(120deg) translateX(30px); }
+        .petal:nth-child(7) { transform: rotate(144deg) translateX(30px); }
+        .petal:nth-child(8) { transform: rotate(168deg) translateX(30px); }
+        .petal:nth-child(9) { transform: rotate(192deg) translateX(30px); }
+        .petal:nth-child(10) { transform: rotate(216deg) translateX(30px); }
+        .petal:nth-child(11) { transform: rotate(240deg) translateX(30px); }
+        .petal:nth-child(12) { transform: rotate(264deg) translateX(30px); }
+        .petal:nth-child(13) { transform: rotate(288deg) translateX(30px); }
+        .petal:nth-child(14) { transform: rotate(312deg) translateX(30px); }
+        .petal:nth-child(15) { transform: rotate(336deg) translateX(30px); }
 
         .rose-center {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, #ff1493, #c71585);
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #ff69b4, #c2185b);
             border-radius: 50%;
-            top: 40px;
-            left: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 10;
         }
 
-        .stem {
-            position: absolute;
-            width: 4px;
-            height: 80px;
-            background: linear-gradient(to bottom, #228b22, #006400);
-            top: 100px;
-            left: 48px;
-            border-radius: 2px;
-        }
-
-        .leaf {
-            position: absolute;
-            width: 25px;
-            height: 15px;
-            background: #228b22;
-            border-radius: 0 50% 50% 0;
-        }
-
-        .leaf-left {
-            top: 120px;
-            left: 23px;
-            transform: rotate(-45deg);
-        }
-
-        .leaf-right {
-            top: 140px;
-            left: 48px;
-            transform: rotate(45deg);
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .question {
-                font-size: 20px;
+        @media (max-width: 768px) {
+            .envelope-wrapper {
+                width: 250px;
+                height: 166px;
             }
-            .btn {
+
+            .card {
+                width: 200px;
+                padding: 20px;
+            }
+
+            .card h1 {
+                font-size: 2em;
+            }
+
+            .card p {
+                font-size: 0.9em;
+            }
+
+            .button {
                 padding: 12px 30px;
-                font-size: 18px;
-            }
-            .envelope {
-                width: 160px;
-                height: 104px;
-            }
-            .letter {
-                width: 140px;
-                height: 160px;
-                font-size: 10px;
-                padding: 15px;
-            }
-            .final-content h1 {
-                font-size: 32px;
-                padding: 0 20px;
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Stars -->
-    <div id="stars"></div>
+    <div class="stars"></div>
+    <div class="stripes"></div>
 
-    <!-- Stripes -->
-    <div id="stripes"></div>
-
-    <!-- Ribbons -->
-    <div id="ribbons"></div>
-
-    <!-- Main Container -->
     <div class="container">
-        <div class="envelope-wrapper" onclick="openEnvelope()">
-            <div class="envelope" id="envelope">
-                <div class="letter" id="letter">
-                    <p><strong>Aapko Jabse Dekha Aapse Dil Lag Gaya, Aapki Hasi Ke Liye Mai Mar Mit Gaya, Chahe Kitni Bhi Khamiya Ho Mujhme, Phir Bhi Ye Dil Aapse Jud Chuka</strong></p>
-                </div>
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope">
+                <div class="envelope-back"></div>
+                <div class="envelope-front"></div>
+                <div class="envelope-top"></div>
+                <div class="letter"></div>
             </div>
         </div>
 
-        <div class="question-section" id="questionSection">
-            <div class="question">
-                Bataiye Aapke Dil Ka Haal - I Love You So Much Baby, Kya Aap Meri Jaan Banogi
-            </div>
-            <div class="buttons">
-                <button class="btn btn-yes" onclick="handleYes()">Haa 💖</button>
-                <button class="btn btn-no" id="btnNo" onmouseover="moveButton()" onclick="handleNo()">Nahi</button>
+        <div class="card" id="card1">
+            <h1>Aapko Jabse Dekha</h1>
+            <p>Meri duniya hi badal gayi hai. Har pal aapke saath bitana chahta hoon.</p>
+            <button class="button" onclick="showNextCard(2)">Aage Badhe</button>
+        </div>
+
+        <div class="card" id="card2">
+            <h1>Ek Sawal</h1>
+            <p>Kya aap mujhe apni zindagi ka hissa banane ka mauka dengi?</p>
+            <div class="response-buttons">
+                <button class="button yes" onclick="handleResponse('yes')">Haa</button>
+                <button class="button no" onclick="handleResponse('no')">Nahi</button>
             </div>
         </div>
-    </div>
 
-    <!-- Final Message -->
-    <div class="final-message" id="finalMessage">
-        <div class="final-content">
-            <h1>Ab Shuru Hota Hai Humara Naya Atoot Rishta</h1>
-            <div class="rose-container">
-                <div class="rose">
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="petal"></div>
-                    <div class="rose-center"></div>
-                </div>
-                <div class="stem"></div>
-                <div class="leaf leaf-left"></div>
-                <div class="leaf leaf-right"></div>
+        <div class="card" id="card3">
+            <h1>Shukriya! ❤️</h1>
+            <p id="responseMessage"></p>
+            <div class="rose" id="rose">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="rose-center"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Generate 200 Stars
-        const starsContainer = document.getElementById('stars');
+        // Create 200 stars
+        const starsContainer = document.querySelector('.stars');
         for (let i = 0; i < 200; i++) {
             const star = document.createElement('div');
             star.className = 'star';
@@ -443,85 +395,79 @@
             starsContainer.appendChild(star);
         }
 
-        // Generate 10 Stripes
-        const stripesContainer = document.getElementById('stripes');
+        // Create 10 stripes
+        const stripesContainer = document.querySelector('.stripes');
         for (let i = 0; i < 10; i++) {
             const stripe = document.createElement('div');
             stripe.className = 'stripe';
             stripe.style.top = (i * 10) + '%';
-            stripe.style.animationDelay = (i * 1.5) + 's';
+            stripe.style.animationDelay = (i * 0.5) + 's';
             stripesContainer.appendChild(stripe);
         }
 
-        // Generate 8 Floating Ribbons
-        const ribbonsContainer = document.getElementById('ribbons');
-        for (let i = 0; i < 8; i++) {
-            const ribbon = document.createElement('div');
-            ribbon.className = 'ribbon';
-            ribbon.style.left = (i * 12.5) + '%';
-            ribbon.style.top = Math.random() * 80 + '%';
-            ribbon.style.animationDelay = (i * 1) + 's';
-            ribbonsContainer.appendChild(ribbon);
-        }
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+        const card1 = document.getElementById('card1');
+        const card2 = document.getElementById('card2');
+        const card3 = document.getElementById('card3');
 
-        // Open Envelope
-        function openEnvelope() {
-            const envelope = document.getElementById('envelope');
-            const questionSection = document.getElementById('questionSection');
-            
-            envelope.classList.add('open');
+        envelopeWrapper.addEventListener('click', function() {
+            this.classList.add('open');
             setTimeout(() => {
-                questionSection.classList.add('visible');
-            }, 800);
-        }
+                card1.classList.add('show');
+            }, 600);
+        });
 
-        // Handle Yes Button
-        function handleYes() {
-            document.getElementById('finalMessage').classList.add('show');
-        }
-
-        // Handle No Button
-        let noClickCount = 0;
-        const messages = [
-            "Soch Lo! 💭",
-            "Pakka? 🥺",
-            "Ek Baar Aur Socho! 💔",
-            "Last Chance! ⏰"
-        ];
-
-        function handleNo() {
-            if (noClickCount < messages.length) {
-                showMessage(messages[noClickCount]);
-                noClickCount++;
-                
-                if (noClickCount >= 4) {
-                    document.getElementById('btnNo').classList.add('hide');
-                }
+        function showNextCard(cardNumber) {
+            if (cardNumber === 2) {
+                card1.classList.remove('show');
+                setTimeout(() => {
+                    card2.classList.add('show');
+                }, 300);
             }
         }
 
-        function moveButton() {
-            const btn = document.getElementById('btnNo');
-            const maxX = window.innerWidth - btn.offsetWidth - 40;
-            const maxY = window.innerHeight - btn.offsetHeight - 40;
-            
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
-            btn.style.position = 'fixed';
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
-        }
+        const yesMessages = [
+            "Aapne mujhe duniya ka sabse khushnaseeb insaan bana diya! ❤️",
+            "Yeh mere liye sabse khoobsurat pal hai! 🌹",
+            "Main hamesha aapka saath nibhaunga! 💕",
+            "Aap meri zindagi ki sabse pyaari cheez ho! 🥰"
+        ];
 
-        function showMessage(text) {
-            const message = document.createElement('div');
-            message.className = 'message';
-            message.textContent = text;
-            document.body.appendChild(message);
-            
+        const noMessages = [
+            "Koi baat nahi, main intezaar karunga... 💔",
+            "Shayad abhi waqt nahi aaya... 🥺",
+            "Main umeed nahi chhodunga! 🌟",
+            "Kabhi na kabhi zaroor sochna! 💭"
+        ];
+
+        let clickCount = 0;
+
+        function handleResponse(response) {
+            card2.classList.remove('show');
             setTimeout(() => {
-                message.remove();
-            }, 2000);
+                card3.classList.add('show');
+                const messageElement = document.getElementById('responseMessage');
+                
+                if (response === 'yes') {
+                    messageElement.textContent = yesMessages[clickCount % yesMessages.length];
+                    document.getElementById('rose').classList.add('show');
+                } else {
+                    messageElement.textContent = noMessages[clickCount % noMessages.length];
+                }
+                
+                clickCount++;
+            }, 300);
+
+            // Allow going back to card 2
+            setTimeout(() => {
+                card3.addEventListener('click', function() {
+                    card3.classList.remove('show');
+                    document.getElementById('rose').classList.remove('show');
+                    setTimeout(() => {
+                        card2.classList.add('show');
+                    }, 300);
+                });
+            }, 1000);
         }
     </script>
 </body>
