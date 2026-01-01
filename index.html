@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be Mine?</title>
+    <title>Will You Be My Valentine?</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -22,17 +22,14 @@
         }
 
         .container {
+            text-align: center;
             position: relative;
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
         }
 
-        /* Envelope Styles */
         .envelope {
             position: relative;
-            width: 400px;
-            height: 280px;
+            width: 300px;
+            height: 200px;
             margin: 0 auto;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -42,404 +39,318 @@
             transform: scale(1.05);
         }
 
-        .envelope-base {
+        .envelope-body {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .envelope-base::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            border-top: 140px solid #d8d8d8;
-        }
-
-        .envelope-base::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            border-bottom: 140px solid #e8e8e8;
-        }
-
         .envelope-flap {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 0;
             height: 0;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            border-top: 140px solid #c94c4c;
-            transform-origin: top center;
-            transition: transform 0.8s ease;
-            z-index: 10;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid #ff6b9d;
+            top: 0;
+            left: 0;
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 2;
             pointer-events: none;
         }
 
-        .envelope.opened .envelope-flap {
+        .envelope.open .envelope-flap {
             transform: rotateX(180deg);
-        }
-
-        /* Heart decoration on envelope */
-        .heart-seal {
-            position: absolute;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 50px;
-            color: #ff6b6b;
-            z-index: 11;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-        }
-
-        .envelope.opened .heart-seal {
-            animation: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Cards Container */
-        .cards-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            perspective: 1000px;
         }
 
         .card {
             position: absolute;
-            width: 350px;
-            height: 500px;
+            width: 250px;
+            height: 350px;
             background: white;
             border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            top: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            top: -50px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
+            transition: transform 0.6s ease, opacity 0.6s ease;
             opacity: 0;
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 5;
+            z-index: 1;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             pointer-events: none;
         }
 
-        .envelope.opened .card {
+        .envelope.open .card {
+            transform: translateX(-50%) translateY(-200px);
             opacity: 1;
-            transform: translate(-50%, -80%);
-        }
-
-        .card.slide-out {
-            transform: translate(-50%, -200%) !important;
-            opacity: 0 !important;
-            pointer-events: auto;
         }
 
         .card h1 {
-            font-size: 36px;
-            color: #c94c4c;
+            color: #f5576c;
             margin-bottom: 20px;
-            font-weight: bold;
+            font-size: 24px;
         }
 
         .card p {
-            font-size: 18px;
-            color: #555;
+            color: #333;
             line-height: 1.6;
             margin-bottom: 30px;
+            text-align: center;
         }
 
-        .card .decorative-heart {
-            font-size: 60px;
-            margin: 20px 0;
-            animation: float 3s ease-in-out infinite;
+        .heart {
+            color: #ff6b9d;
+            font-size: 50px;
+            animation: heartbeat 1.5s infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
         }
 
-        /* Second Card */
-        .card-2 {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            z-index: 4;
+        .hidden {
+            display: none;
         }
 
-        .card-2 h1 {
-            color: #d63031;
-        }
-
-        /* Buttons */
-        .buttons {
-            display: flex;
-            gap: 20px;
+        .response-section {
             margin-top: 20px;
         }
 
         .btn {
-            padding: 15px 40px;
+            padding: 12px 30px;
+            margin: 10px;
             border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
+            border-radius: 25px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
         }
 
         .btn-yes {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
         }
 
         .btn-yes:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
         }
 
         .btn-no {
-            background: #f0f0f0;
+            background: #e0e0e0;
             color: #666;
         }
 
         .btn-no:hover {
-            background: #e0e0e0;
-            transform: translateY(-3px);
+            background: #d0d0d0;
         }
 
-        /* Click instruction */
-        .click-instruction {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 18px;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        .envelope.opened ~ .click-instruction {
-            opacity: 0;
-        }
-
-        /* Final Message */
-        .final-message {
-            position: absolute;
+        .celebration {
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 1s ease;
             text-align: center;
-            z-index: 100;
-            pointer-events: none;
+            z-index: 1000;
         }
 
-        .final-message.show {
-            opacity: 1;
-        }
-
-        .final-message h1 {
-            font-size: 60px;
+        .celebration h2 {
             color: white;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 48px;
             margin-bottom: 20px;
-            animation: scaleIn 0.8s ease-out;
+            animation: fadeInScale 0.5s ease;
         }
 
-        .final-message .heart-rain {
-            font-size: 100px;
-            animation: scaleIn 1s ease-out;
-        }
-
-        @keyframes scaleIn {
+        @keyframes fadeInScale {
             from {
-                transform: scale(0);
                 opacity: 0;
+                transform: scale(0.5);
             }
             to {
-                transform: scale(1);
                 opacity: 1;
+                transform: scale(1);
             }
         }
 
-        /* Floating hearts background */
-        .floating-hearts {
+        .confetti {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            width: 10px;
+            height: 10px;
+            background: #f5576c;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Two-card system styles */
+        .card-container {
+            position: absolute;
+            width: 250px;
+            height: 350px;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1;
         }
 
-        .floating-heart {
+        .card-1, .card-2 {
             position: absolute;
-            font-size: 30px;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.6s ease;
             opacity: 0;
-            animation: floatUp 4s ease-in infinite;
+            pointer-events: none;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+        .card-1 {
+            z-index: 2;
         }
 
-        /* Responsive */
-        @media (max-width: 480px) {
-            .envelope {
-                width: 320px;
-                height: 224px;
-            }
+        .card-2 {
+            z-index: 1;
+        }
 
-            .card {
-                width: 280px;
-                height: 420px;
-                padding: 30px;
-            }
+        .envelope.open .card-1,
+        .envelope.open .card-2 {
+            transform: translateY(-200px);
+            opacity: 1;
+        }
 
-            .card h1 {
-                font-size: 28px;
-            }
+        .card-1.slide-out {
+            transform: translateY(-200px) translateX(-400px);
+            opacity: 0;
+            pointer-events: auto;
+        }
 
-            .card p {
-                font-size: 16px;
-            }
+        .card-2.slide-out {
+            transform: translateY(-200px) translateX(400px);
+            opacity: 0;
+            pointer-events: auto;
+        }
 
-            .btn {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
+        .card-1 h1, .card-2 h1 {
+            color: #f5576c;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .card-1 p, .card-2 p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="floating-hearts" id="floatingHearts"></div>
-    
     <div class="container">
-        <div class="envelope" id="envelope">
-            <div class="envelope-base"></div>
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+            <div class="envelope-body"></div>
             <div class="envelope-flap"></div>
-            <div class="heart-seal">❤️</div>
-            
-            <div class="cards-container">
-                <div class="card card-2">
-                    <h1>So... What Do You Say?</h1>
-                    <div class="decorative-heart">💕</div>
-                    <p>Will you make me the happiest person and be mine?</p>
-                    <div class="buttons">
-                        <button class="btn btn-yes" onclick="handleYes()">Yes! 💖</button>
-                        <button class="btn btn-no" onclick="handleNo()">Maybe...</button>
+            <div class="card-container">
+                <div class="card-1" id="card1">
+                    <h1>💝 Will You Be My Valentine? 💝</h1>
+                    <p>I've been thinking about this for a while now, and I couldn't let this day pass without asking you something special...</p>
+                    <div class="heart">❤️</div>
+                    <div class="response-section">
+                        <button class="btn btn-yes" onclick="sayYes(event)">Yes! 💕</button>
+                        <button class="btn btn-no" onclick="sayNo(event)">Maybe later</button>
                     </div>
                 </div>
-
-                <div class="card">
-                    <h1>My Dearest,</h1>
-                    <div class="decorative-heart">❤️</div>
-                    <p>From the moment I met you, my world has been brighter. Your smile lights up my darkest days, and your laughter is my favorite melody.</p>
-                    <p>I can't imagine my life without you in it. You make everything better just by being you.</p>
-                    <button class="btn btn-yes" onclick="nextCard()">Continue... 💌</button>
+                <div class="card-2 hidden" id="card2">
+                    <h1>🎉 You Made My Day! 🎉</h1>
+                    <p>I'm so happy you said yes! You've just made me the happiest person in the world. I can't wait to create amazing memories together!</p>
+                    <div class="heart">💖</div>
+                    <p style="margin-top: 20px; font-style: italic; color: #f5576c;">This is just the beginning of something beautiful...</p>
                 </div>
             </div>
         </div>
-        
-        <div class="click-instruction">Click the envelope to open ✉️</div>
     </div>
 
-    <div class="final-message" id="finalMessage">
-        <h1>You've Made Me So Happy! 🎉</h1>
-        <div class="heart-rain">❤️💕💖💗💓💝</div>
+    <div class="celebration hidden" id="celebration">
+        <h2>🎊 Yay! 🎊</h2>
     </div>
 
     <script>
-        const envelope = document.getElementById('envelope');
-        const cards = document.querySelectorAll('.card');
-        let currentCard = 0;
         let envelopeOpened = false;
 
-        envelope.addEventListener('click', function() {
+        function openEnvelope() {
             if (!envelopeOpened) {
-                envelope.classList.add('opened');
+                document.getElementById('envelope').classList.add('open');
                 envelopeOpened = true;
             }
-        });
-
-        function nextCard() {
-            if (currentCard < cards.length - 1) {
-                cards[currentCard].classList.add('slide-out');
-                currentCard++;
-            }
         }
 
-        function handleYes() {
-            // Hide everything except final message
-            envelope.style.opacity = '0';
-            document.getElementById('finalMessage').classList.add('show');
+        function sayYes(event) {
+            event.stopPropagation();
             
-            // Create floating hearts
-            createFloatingHearts();
-        }
-
-        function handleNo() {
-            alert("Are you sure? Think about it... 💭");
-        }
-
-        function createFloatingHearts() {
-            const container = document.getElementById('floatingHearts');
-            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝'];
+            // Hide card 1 and show card 2
+            const card1 = document.getElementById('card1');
+            const card2 = document.getElementById('card2');
             
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-                container.appendChild(heart);
-                
+            card1.classList.add('slide-out');
+            
+            setTimeout(() => {
+                card2.classList.remove('hidden');
                 setTimeout(() => {
-                    heart.remove();
-                }, 4000);
+                    card2.style.opacity = '1';
+                }, 50);
             }, 300);
+            
+            // Show celebration
+            const celebration = document.getElementById('celebration');
+            celebration.classList.remove('hidden');
+            
+            // Create confetti
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+            
+            setTimeout(() => {
+                celebration.classList.add('hidden');
+            }, 3000);
+        }
+
+        function sayNo(event) {
+            event.stopPropagation();
+            alert("That's okay! Take your time to think about it. 💭");
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.backgroundColor = ['#f5576c', '#f093fb', '#667eea', '#764ba2'][Math.floor(Math.random() * 4)];
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
         }
     </script>
 </body>
