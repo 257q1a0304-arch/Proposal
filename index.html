@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ek Khaas Proposal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Valentine's Proposal 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,461 +13,398 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Pacifico', cursive;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 25%, #ff69b4 50%, #ff1493 75%, #c71585 100%);
             min-height: 100vh;
+            background: linear-gradient(135deg, #ff6ec4 0%, #ff1493 25%, #ff69b4 50%, #da70d6 75%, #ee82ee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
         }
 
         /* Twinkling Stars */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
         .star {
             position: absolute;
+            width: 2px;
+            height: 2px;
             background: white;
             border-radius: 50%;
             animation: twinkle 3s infinite;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
         }
 
-        /* Pink Stripes Background */
-        .stripes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
+        /* Pink Stripes */
         .stripe {
             position: absolute;
             width: 100%;
-            height: 80px;
-            background: rgba(255, 192, 203, 0.2);
-            transform: skewY(-3deg);
+            height: 3px;
+            background: rgba(255, 182, 193, 0.3);
+            animation: moveStripe 15s linear infinite;
         }
 
-        /* Floating Pink Ribbons */
-        .ribbons {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            overflow: hidden;
+        @keyframes moveStripe {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
+        /* Floating Ribbons */
         .ribbon {
             position: absolute;
-            width: 30px;
+            width: 40px;
             height: 150px;
-            background: linear-gradient(to bottom, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8));
-            border-radius: 5px;
-            animation: float 8s infinite ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #ff69b4, #ff1493);
+            border-radius: 20px;
+            animation: floatRibbon 8s ease-in-out infinite;
+            opacity: 0.6;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-30px) rotate(5deg);
-            }
-            50% {
-                transform: translateY(-60px) rotate(-5deg);
-            }
-            75% {
-                transform: translateY(-30px) rotate(3deg);
-            }
+        @keyframes floatRibbon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
         }
 
         /* Container */
         .container {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* Initial Screen */
-        .initial-screen {
             text-align: center;
-            color: white;
-            animation: fadeIn 2s ease-in;
-        }
-
-        .initial-screen h1 {
-            font-size: 3rem;
-            font-weight: 600;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        .initial-screen p {
-            font-size: 1.5rem;
-            font-weight: 300;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-            margin-bottom: 40px;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            z-index: 10;
+            padding: 20px;
+            max-width: 90%;
         }
 
         /* Envelope */
-        .envelope-container {
-            position: relative;
+        .envelope-wrapper {
             cursor: pointer;
+            display: inline-block;
+            margin-bottom: 30px;
             transition: transform 0.3s ease;
         }
 
-        .envelope-container:hover {
+        .envelope-wrapper:hover {
             transform: scale(1.05);
         }
 
         .envelope {
+            width: 200px;
+            height: 130px;
             position: relative;
-            width: 300px;
-            height: 200px;
-            background: linear-gradient(135deg, #b76e79 0%, #e6b8a2 50%, #b76e79 100%);
+            background: linear-gradient(135deg, #d4af76 0%, #c5a572 33%, #b89968 66%, #e6c589 100%);
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            overflow: visible;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .envelope-flap {
+        .envelope::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-top: 100px solid #c97d8c;
-            transform-origin: top center;
-            transition: transform 0.8s ease;
-            z-index: 3;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 65px solid #d4af76;
+            transform-origin: top;
+            transition: transform 0.6s ease;
         }
 
-        .envelope.open .envelope-flap {
+        .envelope.open::before {
             transform: rotateX(180deg);
         }
 
-        /* Cards Inside Envelope */
-        .cards-container {
+        .letter {
             position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 260px;
-            height: 160px;
-            transition: transform 0.8s ease;
-            z-index: 2;
-        }
-
-        .envelope.open .cards-container {
-            transform: translateX(-50%) translateY(-120px);
-        }
-
-        .card {
-            position: absolute;
-            width: 240px;
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.8s ease;
-        }
-
-        .card1 {
-            height: 140px;
-            top: 0;
-            left: 10px;
-            z-index: 3;
-        }
-
-        .card2 {
-            height: 140px;
-            top: 5px;
-            left: 10px;
-            z-index: 2;
-        }
-
-        .card3 {
-            height: 140px;
-            top: 10px;
-            left: 10px;
-            z-index: 1;
-        }
-
-        .envelope.open .card1 {
-            transform: translateY(-20px) rotate(-2deg);
-        }
-
-        .envelope.open .card2 {
-            transform: translateY(-10px) rotate(0deg);
-        }
-
-        .envelope.open .card3 {
-            transform: translateY(0px) rotate(2deg);
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: #333;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        /* Button */
-        .next-button {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 40px;
-            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
-            transition: all 0.3s ease;
-            display: none;
-        }
-
-        .next-button.show {
-            display: inline-block;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .next-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
-        }
-
-        /* Rose Screen */
-        .rose-screen {
-            display: none;
-            text-align: center;
-            color: white;
-            animation: fadeIn 2s ease-in;
-        }
-
-        .rose-screen.show {
-            display: block;
-        }
-
-        .rose-container {
-            margin: 40px 0;
-        }
-
-        .rose {
-            position: relative;
-            width: 200px;
+            width: 180px;
             height: 200px;
-            margin: 0 auto;
-        }
-
-        .petal {
-            position: absolute;
-            width: 60px;
-            height: 80px;
-            background: radial-gradient(ellipse at center, #ff69b4 0%, #ff1493 70%, #c71585 100%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transform-origin: bottom center;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* 15 Petals positioned in circular pattern */
-        .petal:nth-child(1) { transform: rotate(0deg) translateY(-60px); }
-        .petal:nth-child(2) { transform: rotate(24deg) translateY(-60px); }
-        .petal:nth-child(3) { transform: rotate(48deg) translateY(-60px); }
-        .petal:nth-child(4) { transform: rotate(72deg) translateY(-60px); }
-        .petal:nth-child(5) { transform: rotate(96deg) translateY(-60px); }
-        .petal:nth-child(6) { transform: rotate(120deg) translateY(-60px); }
-        .petal:nth-child(7) { transform: rotate(144deg) translateY(-60px); }
-        .petal:nth-child(8) { transform: rotate(168deg) translateY(-60px); }
-        .petal:nth-child(9) { transform: rotate(192deg) translateY(-60px); }
-        .petal:nth-child(10) { transform: rotate(216deg) translateY(-60px); }
-        .petal:nth-child(11) { transform: rotate(240deg) translateY(-60px); }
-        .petal:nth-child(12) { transform: rotate(264deg) translateY(-60px); }
-        .petal:nth-child(13) { transform: rotate(288deg) translateY(-60px); }
-        .petal:nth-child(14) { transform: rotate(312deg) translateY(-60px); }
-        .petal:nth-child(15) { transform: rotate(336deg) translateY(-60px); }
-
-        .rose-center {
-            position: absolute;
+            background: white;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, #ffb6c1, #ff69b4);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+            border-radius: 5px;
+            padding: 20px;
+            font-size: 12px;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.8s ease;
+            line-height: 1.6;
         }
 
-        .stem {
-            position: absolute;
-            bottom: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 80px;
-            background: linear-gradient(to bottom, #2d5016, #4a7c28);
-            border-radius: 4px;
+        .envelope.open .letter {
+            opacity: 1;
+            top: -50px;
         }
 
-        .leaf {
-            position: absolute;
-            width: 40px;
-            height: 25px;
-            background: #4a7c28;
-            border-radius: 50% 0;
-            top: 30px;
+        /* Question Section */
+        .question-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            margin-top: 20px;
         }
 
-        .leaf:nth-child(1) {
-            left: -30px;
-            transform: rotate(-45deg);
+        .question-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .leaf:nth-child(2) {
-            right: -30px;
-            transform: rotate(45deg) scaleX(-1);
+        .question {
+            font-size: 28px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 24px;
+            font-family: 'Pacifico', cursive;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #ddd, #bbb);
+            color: #333;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .btn-no.hide {
+            display: none;
+        }
+
+        /* Messages */
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 16px;
+            color: #ff1493;
+            animation: slideIn 0.5s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* Final Message */
         .final-message {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            margin-top: 40px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 3s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hidden {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 20, 147, 0.95);
             display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 1s ease;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .initial-screen h1 {
-                font-size: 2rem;
-            }
+        .final-message.show {
+            display: flex;
+        }
 
-            .initial-screen p {
-                font-size: 1.2rem;
-            }
+        .final-content {
+            text-align: center;
+            color: white;
+        }
 
+        .final-content h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            margin-bottom: 30px;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        /* Rose Design */
+        .rose-container {
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .rose {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            animation: roseGlow 2s infinite alternate;
+        }
+
+        @keyframes roseGlow {
+            from { filter: drop-shadow(0 0 5px #ff69b4); }
+            to { filter: drop-shadow(0 0 20px #ff1493); }
+        }
+
+        .petal {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: radial-gradient(ellipse at center, #ff69b4 0%, #ff1493 70%, #c71585 100%);
+            border-radius: 50% 50% 50% 0;
+            transform-origin: 0 100%;
+        }
+
+        .petal:nth-child(1) { transform: translate(35px, 10px) rotate(0deg); }
+        .petal:nth-child(2) { transform: translate(35px, 10px) rotate(24deg); }
+        .petal:nth-child(3) { transform: translate(35px, 10px) rotate(48deg); }
+        .petal:nth-child(4) { transform: translate(35px, 10px) rotate(72deg); }
+        .petal:nth-child(5) { transform: translate(35px, 10px) rotate(96deg); }
+        .petal:nth-child(6) { transform: translate(35px, 10px) rotate(120deg); }
+        .petal:nth-child(7) { transform: translate(35px, 10px) rotate(144deg); }
+        .petal:nth-child(8) { transform: translate(35px, 10px) rotate(168deg); }
+        .petal:nth-child(9) { transform: translate(35px, 10px) rotate(192deg); }
+        .petal:nth-child(10) { transform: translate(35px, 10px) rotate(216deg); }
+        .petal:nth-child(11) { transform: translate(35px, 10px) rotate(240deg); }
+        .petal:nth-child(12) { transform: translate(35px, 10px) rotate(264deg); }
+        .petal:nth-child(13) { transform: translate(35px, 10px) rotate(288deg); }
+        .petal:nth-child(14) { transform: translate(35px, 10px) rotate(312deg); }
+        .petal:nth-child(15) { transform: translate(35px, 10px) rotate(336deg); }
+
+        .rose-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ff1493, #c71585);
+            border-radius: 50%;
+            top: 40px;
+            left: 40px;
+            z-index: 10;
+        }
+
+        .stem {
+            position: absolute;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, #228b22, #006400);
+            top: 100px;
+            left: 48px;
+            border-radius: 2px;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: #228b22;
+            border-radius: 0 50% 50% 0;
+        }
+
+        .leaf-left {
+            top: 120px;
+            left: 23px;
+            transform: rotate(-45deg);
+        }
+
+        .leaf-right {
+            top: 140px;
+            left: 48px;
+            transform: rotate(45deg);
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .question {
+                font-size: 20px;
+            }
+            .btn {
+                padding: 12px 30px;
+                font-size: 18px;
+            }
             .envelope {
-                width: 250px;
-                height: 170px;
+                width: 160px;
+                height: 104px;
             }
-
-            .envelope-flap {
-                border-left: 125px solid transparent;
-                border-right: 125px solid transparent;
-                border-top: 85px solid #c97d8c;
-            }
-
-            .cards-container {
-                width: 220px;
-                height: 140px;
-            }
-
-            .card {
-                width: 200px;
+            .letter {
+                width: 140px;
+                height: 160px;
+                font-size: 10px;
                 padding: 15px;
             }
-
-            .card1, .card2, .card3 {
-                height: 120px;
-            }
-
-            .next-button {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-
-            .final-message {
-                font-size: 2rem;
+            .final-content h1 {
+                font-size: 32px;
+                padding: 0 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Twinkling Stars -->
-    <div class="stars" id="stars"></div>
+    <!-- Stars -->
+    <div id="stars"></div>
 
-    <!-- Pink Stripes Background -->
-    <div class="stripes" id="stripes"></div>
+    <!-- Stripes -->
+    <div id="stripes"></div>
 
-    <!-- Floating Pink Ribbons -->
-    <div class="ribbons" id="ribbons"></div>
+    <!-- Ribbons -->
+    <div id="ribbons"></div>
 
     <!-- Main Container -->
     <div class="container">
-        <!-- Initial Screen -->
-        <div class="initial-screen" id="initialScreen">
-            <h1>Aapko Jabse Dekha Hai...</h1>
-            <p>Dil Mein Ek Khaas Jagah Ban Gayi Hai</p>
-            
-            <!-- Envelope with Cards -->
-            <div class="envelope-container" id="envelopeContainer">
-                <div class="envelope" id="envelope">
-                    <div class="envelope-flap"></div>
-                    <div class="cards-container">
-                        <div class="card card1">
-                            <p>Har pal aapke saath bitana chahta hoon...</p>
-                        </div>
-                        <div class="card card2">
-                            <p>Aapki muskurahat meri khushi hai...</p>
-                        </div>
-                        <div class="card card3">
-                            <p>Kya aap mujhe apna life partner banayengi?</p>
-                        </div>
-                    </div>
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div class="envelope" id="envelope">
+                <div class="letter" id="letter">
+                    <p><strong>Aapko Jabse Dekha Aapse Dil Lag Gaya, Aapki Hasi Ke Liye Mai Mar Mit Gaya, Chahe Kitni Bhi Khamiya Ho Mujhme, Phir Bhi Ye Dil Aapse Jud Chuka</strong></p>
                 </div>
             </div>
-
-            <button class="next-button" id="nextButton">Aage Badhe</button>
         </div>
 
-        <!-- Rose Screen -->
-        <div class="rose-screen" id="roseScreen">
-            <h1>Mere Dil Se Aapke Liye...</h1>
-            
+        <div class="question-section" id="questionSection">
+            <div class="question">
+                Bataiye Aapke Dil Ka Haal - I Love You So Much Baby, Kya Aap Meri Jaan Banogi
+            </div>
+            <div class="buttons">
+                <button class="btn btn-yes" onclick="handleYes()">Haa 💖</button>
+                <button class="btn btn-no" id="btnNo" onmouseover="moveButton()" onclick="handleNo()">Nahi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Message -->
+    <div class="final-message" id="finalMessage">
+        <div class="final-content">
+            <h1>Ab Shuru Hota Hai Humara Naya Atoot Rishta</h1>
             <div class="rose-container">
                 <div class="rose">
                     <div class="petal"></div>
@@ -486,79 +423,106 @@
                     <div class="petal"></div>
                     <div class="petal"></div>
                     <div class="rose-center"></div>
-                    <div class="stem">
-                        <div class="leaf"></div>
-                        <div class="leaf"></div>
-                    </div>
                 </div>
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
             </div>
-
-            <p class="final-message">Aap Meri Zindagi Ki Sabse Haseen Baat Ho</p>
         </div>
     </div>
 
     <script>
-        // Create 200 twinkling stars
+        // Generate 200 Stars
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 200; i++) {
             const star = document.createElement('div');
             star.className = 'star';
-            star.style.width = Math.random() * 3 + 1 + 'px';
-            star.style.height = star.style.width;
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
             star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
             starsContainer.appendChild(star);
         }
 
-        // Create 10 pink stripes
+        // Generate 10 Stripes
         const stripesContainer = document.getElementById('stripes');
         for (let i = 0; i < 10; i++) {
             const stripe = document.createElement('div');
             stripe.className = 'stripe';
-            stripe.style.top = (i * 150) + 'px';
+            stripe.style.top = (i * 10) + '%';
+            stripe.style.animationDelay = (i * 1.5) + 's';
             stripesContainer.appendChild(stripe);
         }
 
-        // Create floating pink ribbons
+        // Generate 8 Floating Ribbons
         const ribbonsContainer = document.getElementById('ribbons');
         for (let i = 0; i < 8; i++) {
             const ribbon = document.createElement('div');
             ribbon.className = 'ribbon';
-            ribbon.style.left = (Math.random() * 100) + '%';
-            ribbon.style.top = (Math.random() * 100) + '%';
-            ribbon.style.animationDelay = (Math.random() * 4) + 's';
-            ribbon.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            ribbon.style.left = (i * 12.5) + '%';
+            ribbon.style.top = Math.random() * 80 + '%';
+            ribbon.style.animationDelay = (i * 1) + 's';
             ribbonsContainer.appendChild(ribbon);
         }
 
-        // Envelope interaction - Fixed clickable area
-        const envelopeContainer = document.getElementById('envelopeContainer');
-        const envelope = document.getElementById('envelope');
-        const nextButton = document.getElementById('nextButton');
-        let envelopeOpened = false;
+        // Open Envelope
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const questionSection = document.getElementById('questionSection');
+            
+            envelope.classList.add('open');
+            setTimeout(() => {
+                questionSection.classList.add('visible');
+            }, 800);
+        }
 
-        envelopeContainer.addEventListener('click', function(e) {
-            if (!envelopeOpened) {
-                envelope.classList.add('open');
-                envelopeOpened = true;
+        // Handle Yes Button
+        function handleYes() {
+            document.getElementById('finalMessage').classList.add('show');
+        }
+
+        // Handle No Button
+        let noClickCount = 0;
+        const messages = [
+            "Soch Lo! 💭",
+            "Pakka? 🥺",
+            "Ek Baar Aur Socho! 💔",
+            "Last Chance! ⏰"
+        ];
+
+        function handleNo() {
+            if (noClickCount < messages.length) {
+                showMessage(messages[noClickCount]);
+                noClickCount++;
                 
-                // Show next button after animation
-                setTimeout(() => {
-                    nextButton.classList.add('show');
-                }, 1000);
+                if (noClickCount >= 4) {
+                    document.getElementById('btnNo').classList.add('hide');
+                }
             }
-        });
+        }
 
-        // Next button interaction
-        const initialScreen = document.getElementById('initialScreen');
-        const roseScreen = document.getElementById('roseScreen');
+        function moveButton() {
+            const btn = document.getElementById('btnNo');
+            const maxX = window.innerWidth - btn.offsetWidth - 40;
+            const maxY = window.innerHeight - btn.offsetHeight - 40;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
 
-        nextButton.addEventListener('click', function() {
-            initialScreen.classList.add('hidden');
-            roseScreen.classList.add('show');
-        });
+        function showMessage(text) {
+            const message = document.createElement('div');
+            message.className = 'message';
+            message.textContent = text;
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 2000);
+        }
     </script>
 </body>
 </html>
